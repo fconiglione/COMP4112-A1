@@ -83,7 +83,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 
 # KNN
 
-classifierKNN = KNeighborsClassifier(n_neighbors=3)
+classifierKNN = KNeighborsClassifier(n_neighbors=31)
 classifierKNN.fit(X_train, y_train)
 otherClassifierTestPred = classifierKNN.predict(X_test)
 npYtest = np.array(y_test)
