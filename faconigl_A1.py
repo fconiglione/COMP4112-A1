@@ -10,15 +10,16 @@ of the data for a single feature might make it perform better. You can get creat
 are no necessarily wrong answ
 """
 
-# Feature 1: Getting the number of characters in the email
+# Feature 1: Getting the number of characters in the email (in thousands)
 
 def email_length(row):
-    return len(row['num_char'])
+    return row['num_char']
 
-# Feature 2: Determine whether the email is sent to multiple recipients
+# Feature 2: Determine whether the email is sent to multiple recipients or has more than 10 cc's
 
 def multiple_recipients(row):
-    return int(row['to_multiple'])
+    # Returns 1 for true, 0 for false
+    return int(row['to_multiple'] or (row['cc'] > 10))
 
 # Feature 3: Whether the email subject contains an exclamation mark or the word 'urgent'
 
@@ -39,4 +40,3 @@ def contains_html(row):
 
 def spam_words(row):
     return sum([row['dollar'], row['winner'], row['inherit'], row['viagra'], row['password']])
-
