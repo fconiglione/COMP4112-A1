@@ -88,3 +88,35 @@ classifierKNN.fit(X_train, y_train)
 otherClassifierTestPred = classifierKNN.predict(X_test)
 npYtest = np.array(y_test)
 print("K-Nearest Neighbor" + "Test set score: {:.2f}".format(np.mean(otherClassifierTestPred == npYtest)))
+
+# Decision Tree
+
+classifierDTree = DecisionTreeClassifier()
+classifierDTree.fit(X_train, y_train)
+otherClassifierTestPred = classifierDTree.predict(X_test)
+npYtest = np.array(y_test)
+print("Decision Tree" + "Test set score: {:.2f}".format(np.mean(otherClassifierTestPred == npYtest)))
+
+# Random Forest
+
+classifierRndForest = RandomForestClassifier()
+classifierRndForest.fit(X_train, y_train)
+otherClassifierTestPred = classifierRndForest.predict(X_test)
+npYtest = np.array(y_test)
+print("Random Forest" + "Test set score: {:.2f}".format(np.mean(otherClassifierTestPred == npYtest)))
+
+# Naive Bayes
+
+classifierNB = GaussianNB()
+classifierNB.fit(X_train, y_train)
+otherClassifierTestPred = classifierNB.predict(X_test)
+npYtest = np.array(y_test)
+print("Gaussian NB" + "Test set score: {:.2f}".format(np.mean(otherClassifierTestPred == npYtest)))
+
+# SVM
+
+classifierSVM = svm.LinearSVC()
+classifierSVM.fit(X_train, y_train)
+otherClassifierTestPred = classifierSVM.predict(X_test)
+npYtest = np.array(y_test)
+print("SVM" + "Test set score: {:.2f}".format(np.mean(otherClassifierTestPred == npYtest)))
