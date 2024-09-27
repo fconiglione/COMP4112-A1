@@ -1,3 +1,13 @@
+# COMP 4112 Introduction to Data Science
+# Assignment 1, Classification
+# Francesco Coniglione (st#1206780)
+
+"""
+Read in the TSV dataset. You can do this how you like; Python lists are totally acceptable but
+you might have to convert to other formats for scikit-learn sometimes. If you want, you could
+use a pandas dataframe or a numpy array.
+"""
+
 import pandas as pd
 
 data = pd.read_csv('email.tsv', sep='\t')
@@ -40,3 +50,11 @@ def contains_html(row):
 
 def spam_words(row):
     return sum([row['dollar'], row['winner'], row['inherit'], row['viagra'], row['password']])
+
+"""
+Train at least a KNN, Decision Tree/Random Forest(results will be similar since the Forest uses
+Decision Trees), Naïve Bayes, and SVM classifier using the helper code below.
+
+The following code was created using "The Basic Clickbait Classifier example code" as a reference
+"""
+
