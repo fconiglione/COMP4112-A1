@@ -8,10 +8,20 @@ you might have to convert to other formats for scikit-learn sometimes. If you wa
 use a pandas dataframe or a numpy array.
 """
 
+# Basic imports
 import pandas as pd
 
+# Other imports for analysis
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn import svm
+from sklearn.metrics import accuracy_score
+
 data = pd.read_csv('email.tsv', sep='\t')
-print(data.head())
 
 """
 Select/develop at least 6 features (generally going to be 6 Python functions). Yes, you could
@@ -46,10 +56,10 @@ def num_attachments(row):
 def contains_html(row):
     return int(row['format'])
 
-# Feature 6: The number of times the email contains one or more of the following words or characters: 'dollar', 'winner', 'inherit', 'viagra', 'password'
+# Feature 6: The number of times the email contains one or more of the following words or characters: 'dollar', 'inherit', 'viagra', 'password'
 
 def spam_words(row):
-    return sum([row['dollar'], row['winner'], row['inherit'], row['viagra'], row['password']])
+    return sum([row['dollar'], row['inherit'], row['viagra'], row['password']])
 
 """
 Train at least a KNN, Decision Tree/Random Forest(results will be similar since the Forest uses
@@ -58,3 +68,23 @@ Decision Trees), Naïve Bayes, and SVM classifier using the helper code below.
 The following code was created using "The Basic Clickbait Classifier example code" as a reference
 """
 
+# Create the features and labels
+data['email_length'] = data.apply(email_length, axis=1)
+data['multiple_recipients'] = data.apply(multiple_recipients, axis=1)
+data['excited_subject'] = data.apply(excited_subject, axis=1)
+data['num_attachments'] = data.apply(num_attachments, axis=1)
+data['contains_html'] = data.apply(contains_html, axis=1)
+data['spam_words'] = data.apply(spam_words, axis=1)
+
+X = data[['email_length', 'multiple_recipients', 'excited_subject', 'num_attachments', 'contains_html', 'spam_words']]
+y = data['spam']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+
+# KNN
+
+classifierKNN = KNeighborsClassifier(n_neighbors=3)
+classifierKNN.fit(X_train, y_train)
+otherClassifierTestPred = classifierKNN.predict(X_test)
+npYtest = np.array(y_test)
+print("K-Nearest Neighbor" + "Test set score: {:.2f}".format(np.mean(otherClassifierTestPred == npYtest)))
