@@ -65,10 +65,11 @@ def spam_words(row):
 Train at least a KNN, Decision Tree/Random Forest(results will be similar since the Forest uses
 Decision Trees), Naïve Bayes, and SVM classifier using the helper code below.
 
-The following code was created using "The Basic Clickbait Classifier example code" as a reference
+The following code was created using "The Basic Clickbait Classifier example code" as a reference.
 """
 
 # Create the features and labels
+# Reference: https://www.w3schools.com/python/pandas/ref_df_apply.asp
 data['email_length'] = data.apply(email_length, axis=1)
 data['multiple_recipients'] = data.apply(multiple_recipients, axis=1)
 data['excited_subject'] = data.apply(excited_subject, axis=1)
