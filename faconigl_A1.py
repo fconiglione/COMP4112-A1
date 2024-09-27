@@ -19,7 +19,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn import svm
-from sklearn.metrics import accuracy_score
 
 data = pd.read_csv('email.tsv', sep='\t')
 
